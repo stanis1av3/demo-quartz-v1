@@ -21,8 +21,10 @@ import static org.quartz.TriggerKey.triggerKey;
 public class QuartzSchedulerService {
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;
-
+    //name of group that is used to gather all the required tasks into one group
     final String GROUP="group1";
+
+    //immediate start task example
     public void applyFooTaskNow(String param){
 
         try {
@@ -47,6 +49,7 @@ public class QuartzSchedulerService {
 
     }
 
+    //the same
     public void applyBarTaskNow(String param){
 
         try {
@@ -70,6 +73,7 @@ public class QuartzSchedulerService {
 
     }
 
+    //pass cron parameter to start task on schedule
     public void applyTasksPerCron(String cron, Class task){
         try {
             JobDataMap jobDataMap = new JobDataMap();
@@ -91,6 +95,8 @@ public class QuartzSchedulerService {
         }
 
     }
+
+    //kills running task based on task trigger name
 
     public void destroyTask(String triggerName) {
         try {

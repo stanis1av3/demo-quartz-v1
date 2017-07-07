@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
  */
 @DisallowConcurrentExecution
 public class FooJobRunner implements Job {
+
+// the way beans can be injected into the job
 //    @Autowired
 //    SomeService someService;
 
@@ -20,9 +22,6 @@ public class FooJobRunner implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         JobDataMap data = jobExecutionContext.getMergedJobDataMap();
-//        log.info("Start job execution, id={}", data.get("scheduleId"));
-//        SecurityContextHolder.setContext(QuartzSchedulerService.SINGLE_STATIC_SECURITY_CONTEXT);
-
         System.out.println("Heil, i am a Foo Process, that is started with param: "+data.get("param-foo"));
 
         dataRepository.save("FOO:" +LocalDateTime.now().toString());
